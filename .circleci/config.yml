@@ -6,6 +6,17 @@ orbs:
   welcome: circleci/welcome-orb@0.4.1
 # Orchestrate or schedule a set of jobs
 jobs:
+  print_myName:
+    docker:
+      - image: circleci/node:13.8.0
+    build:
+      parameters:
+        my_name:
+          type: string
+          default: rehab
+    steps:
+      - run: echo parameters.my_name      
+        
   print_hello:
     docker:
       - image: circleci/node:13.8.0
@@ -22,7 +33,10 @@ workflows:
     # Run the welcome/run job in its own container
     jobs:
       - welcome/run
+      - print_myName
       - print_hello
+          requires:
+            - print_myName
       - print_world:
           requires:
             - print_hello
