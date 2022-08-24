@@ -29,7 +29,7 @@ workflows:
     jobs:
       - welcome/run
       - print_myName
-      - print_hello
+      - print_hello:
           requires:
             - print_myName
       - print_world:
