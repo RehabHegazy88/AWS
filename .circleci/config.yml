@@ -15,7 +15,7 @@ jobs:
           type: string
           default: rehab
     steps:
-      - run: echo parameters.my_name      
+      - run: echo  $MY_ENV_VAR 
         
   print_hello:
     docker:
