@@ -9,11 +9,6 @@ jobs:
   print_myName:
     docker:
       - image: circleci/node:13.8.0
-    build:
-      parameters:
-        my_name:
-          type: string
-          default: rehab
     steps:
       - run: echo  $MY_ENV_VAR 
         
