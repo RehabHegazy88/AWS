@@ -14,16 +14,16 @@ jobs:
       - persist_to_workspace:
           # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is
           # taken to be the root directory of the workspace.
-          root: workspace
+          root: .
           # Must be relative path from root
           paths:
-            - /tmp/output.txt
+            - /tmp/*
   print_output_file:
     docker:
       - image: circleci/node:13.8.0
     steps:
       - attach_workspace:
-        at: /tmp/workspace
+        at: /tmp
       - run: cat output.txt
 workflows:
   # Name the workflow "welcome"
