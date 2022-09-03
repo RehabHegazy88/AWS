@@ -22,7 +22,11 @@ jobs:
     <<: *default
     steps:
       - print_command:
-          to: $CIRCLE_WORKFLOW_ID
+          to $CIRCLE_WORKFLOW_ID
+      - run:
+        name: Upload Failed Tests
+        command: curl --data fail_tests.log http://example.com/error_logs
+        when: on_fail
   save_hello_world_output:
     <<: *default
     steps:
