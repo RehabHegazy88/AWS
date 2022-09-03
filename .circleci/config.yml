@@ -24,8 +24,7 @@ jobs:
       - print_command:
           to: $CIRCLE_WORKFLOW_ID
   save_hello_world_output:
-    docker:
-      - image: circleci/node:13.8.0
+    <<: *default
     steps:
       - run: echo "hello world" > ~/output.txt
       - persist_to_workspace:
@@ -33,8 +32,7 @@ jobs:
           paths:
             - output.txt
   print_output_file:
-    docker:
-      - image: circleci/node:13.8.0
+    <<: *default
     steps:
       - attach_workspace:
           at: ~/
