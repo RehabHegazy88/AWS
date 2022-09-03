@@ -15,6 +15,12 @@ commands: # a reusable command with parameters
       - run: echo "Hello <<parameters.to>>"
     
 jobs:
+  print_workflow_job:
+    docker:
+        - image: circleci/node:13.8.0
+    steps:
+      -print_command:
+        to: $CIRCLE_WORKFLOW_ID
   save_hello_world_output:
     docker:
       - image: circleci/node:13.8.0
@@ -31,12 +37,7 @@ jobs:
       - attach_workspace:
           at: ~/
       - run: cat ~/output.txt
-  print_workflow_job:
-    docker:
-        - image: circleci/node:13.8.0
-    steps:
-      -print_command:
-        to: $CIRCLE_WORKFLOW_ID
+  
 workflows:
   # Name the workflow "welcome"
   welcome:
